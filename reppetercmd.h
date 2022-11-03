@@ -10,7 +10,7 @@ public:
     ReppeterCmd();
     void setReppet(int reppet);
     //Берет на выполнение функцию, возращает ее id
-    int appendExecCmd(std::function<void()> execCmd);
+    int appendExecCmd(std::function<void()>&& execCmd);
     //Запускает cb execCmd по id выданому appendExecCmd,
     //и повторяет отправку до reppet или пока execCmd не будет удален через removeExecCmd
     bool runExecCmd(int id);

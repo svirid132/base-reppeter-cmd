@@ -2,11 +2,13 @@
 #define INTERFACECMD_H
 
 #include <QByteArray>
+#include <QDebug>
 
 class InterfaceCmd
 {
 public:
     InterfaceCmd();
+    ~InterfaceCmd() { qDebug() << "InterfaceCmd delete"; }
 
 //Ответ response
     //Если адрес сходится

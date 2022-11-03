@@ -17,6 +17,9 @@ public:
         qDebug() << "this is NT17";
         return true;
     };
+    void error() {
+        qDebug() << "error NT17";
+    }
 };
 
 #endif // NT17COMMAND_H
