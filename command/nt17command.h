@@ -9,6 +9,7 @@ class NT17Command : public InterfaceCmd
 {
 public:
     NT17Command();
+    ~NT17Command() {qDebug() << "delete NT17Command"; }
 
     //Если запрос эквивалентен тому, что мы отправили. Там могут быть ошибки.
     struct ErrorNT17;

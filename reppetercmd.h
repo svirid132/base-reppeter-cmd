@@ -9,8 +9,8 @@ class ReppeterCmd
 public:
     ReppeterCmd();
     void setReppet(int reppet);
-    //Берет на выполнение функцию, возращает ее id
-    int appendExecCmd(std::function<void()>&& execCmd);
+    //Берет на выполнение функцию и удаление ее
+    int appendExecCmd(std::function<void()>&& execCmd, std::function<void()>&& deleteCmd);
     //Запускает cb execCmd по id выданому appendExecCmd,
     //и повторяет отправку до reppet или пока execCmd не будет удален через removeExecCmd
     bool runExecCmd(int id);
@@ -26,6 +26,7 @@ private:
         int id;
         int countReppet = 0;
         std::function<void()> execCmd;
+        std::function<void()> deleteCmd;
         std::unique_ptr<QTimer> timer = std::make_unique<QTimer>();
     };
     std::map<int, std::shared_ptr<ReppetCmd>> reppetCmds;

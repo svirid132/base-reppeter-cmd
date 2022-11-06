@@ -21,6 +21,9 @@ add_executable(CommandTVK
     reppetercmd.h
     uint17.h
     controller.h
+    uint17controller.h
+    responcehandler.h
+    nt17model.h
 
     command/interfacecmd.cpp
     command/nt17command.cpp
@@ -29,5 +32,8 @@ add_executable(CommandTVK
     uint17.cpp
     controller.cpp
     main.cpp
+    uint17controller.cpp
+    responcehandler.cpp
+    nt17model.cpp
 )
 target_link_libraries(CommandTVK Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::SerialPort)

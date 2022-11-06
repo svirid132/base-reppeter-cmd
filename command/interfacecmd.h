@@ -8,7 +8,7 @@ class InterfaceCmd
 {
 public:
     InterfaceCmd();
-    ~InterfaceCmd() { qDebug() << "InterfaceCmd delete"; }
+    ~InterfaceCmd() { qDebug() << "delete InterfaceCmd"; }
 
 //Ответ response
     //Если адрес сходится

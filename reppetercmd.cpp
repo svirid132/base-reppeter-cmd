@@ -12,12 +12,13 @@ void ReppeterCmd::setReppet(int reppet)
     this->reppet = reppet;
 }
 
-int ReppeterCmd::appendExecCmd(std::function<void ()>&& execCmd)
+int ReppeterCmd::appendExecCmd(std::function<void ()>&& execCmd, std::function<void()>&& deleteCmd)
 {
     std::shared_ptr<ReppetCmd> reppetCmd = std::make_shared<ReppetCmd>();
     reppetCmd->id = nextIdCmd;
     nextIdCmd += 1;
     reppetCmd->execCmd = std::forward<std::function<void ()>>(execCmd);
+    reppetCmd->deleteCmd = std::forward<std::function<void ()>>(deleteCmd);
     reppetCmd->timer->setInterval(1000);
     QObject::connect(reppetCmd->timer.get(), &QTimer::timeout, [this, reppetCmd]() {
         if (reppetCmd->countReppet == 3) {
@@ -27,11 +28,9 @@ int ReppeterCmd::appendExecCmd(std::function<void ()>&& execCmd)
         reppetCmd->execCmd();
         reppetCmd->countReppet += 1;
     });
+    reppetCmds.insert(std::pair{reppetCmd->id, reppetCmd});
 
-    int id = reppetCmd->id;
-    reppetCmds.insert(std::pair<int,  std::shared_ptr<ReppetCmd>>{id, reppetCmd});
-
-    return id;
+    return reppetCmd->id;
 }
 
 bool ReppeterCmd::runExecCmd(int id)
@@ -53,6 +52,8 @@ bool ReppeterCmd::removeExecCmd(int id)
         return false;
     }
 
+    //удаление переданное при добавлении команды
+    it->second->deleteCmd();
     //Чтобы уничтожились shared_ptr
     it->second->timer->disconnect();
     //Проверить, удаление timer
