@@ -15,7 +15,6 @@ void UINT17Controller::start()
     std::shared_ptr<NT17Command> nt17Cmd = std::make_shared<NT17Command>();
     std::shared_ptr<ExecCmd> execCmd = std::make_shared<ExecCmd>(ExecCmd{
         getId(),
-        0,
         nt17Cmd,
         std::make_shared<std::function<void ()>>([this]() {
             NT17Model::Data data = m_model->getData(m_id);
@@ -35,7 +34,6 @@ void UINT17Controller::stop()
     std::shared_ptr<NT17Command> nt17Cmd = std::make_shared<NT17Command>();
     std::shared_ptr<ExecCmd> execCmd = std::make_shared<ExecCmd>(ExecCmd{
         getId(),
-        0,
         nt17Cmd,
         std::make_shared<std::function<void ()>>([]() {qDebug() << "yes!"; }),
         std::make_shared<std::function<void (std::shared_ptr<InterfaceCmd> cmd)>>([](std::shared_ptr<InterfaceCmd> cmd) {

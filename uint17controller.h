@@ -3,7 +3,6 @@
 
 #include "controller.h"
 #include "nt17model.h"
-#include "reppetercmd.h"
 #include <QObject>
 #include <QSerialPort>
 
