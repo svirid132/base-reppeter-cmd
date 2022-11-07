@@ -1,17 +1,17 @@
-#ifndef UINT17_H
-#define UINT17_H
+#ifndef NT17UI_H
+#define NT17UI_H
 
-#include "uint17controller.h"
+#include "controller/nt17controller.h"
 
 #include <QObject>
-#include <nt17model.h>
+#include "model/nt17model.h"
 
-class UINT17 : public QObject
+class NT17UI : public QObject
 {
     Q_OBJECT
 public:
-    explicit UINT17(QObject *parent = nullptr);
-    void setController(std::shared_ptr<UINT17Controller> controller);
+    explicit NT17UI(QObject *parent = nullptr);
+    void setController(std::shared_ptr<NT17Controller> controller);
     void setModel(int id, std::shared_ptr<NT17Model> model);
     void update();
 

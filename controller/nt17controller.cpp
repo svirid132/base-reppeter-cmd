@@ -1,16 +1,16 @@
-#include "nt17model.h"
-#include "uint17controller.h"
+#include "model/nt17model.h"
+#include "nt17controller.h"
 
 #include <command/nt17command.h>
 
-UINT17Controller::UINT17Controller(int id, std::shared_ptr<NT17Model> model, QObject *parent)
+NT17Controller::NT17Controller(int id, std::shared_ptr<NT17Model> model, QObject *parent)
     : QObject{parent}
 {
     m_id = id;
     m_model = model;
 }
 
-void UINT17Controller::start()
+void NT17Controller::start()
 {
     std::shared_ptr<NT17Command> nt17Cmd = std::make_shared<NT17Command>();
     std::shared_ptr<ExecCmd> execCmd = std::make_shared<ExecCmd>(ExecCmd{
@@ -29,7 +29,7 @@ void UINT17Controller::start()
     qDebug() << "run";
 }
 
-void UINT17Controller::stop()
+void NT17Controller::stop()
 {
     std::shared_ptr<NT17Command> nt17Cmd = std::make_shared<NT17Command>();
     std::shared_ptr<ExecCmd> execCmd = std::make_shared<ExecCmd>(ExecCmd{
